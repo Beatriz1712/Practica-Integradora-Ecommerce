@@ -2,7 +2,8 @@ import { Router } from 'express';
 import {cartsModel} from '../models/carts.model.js'
 
 export const router = Router();
-
+/********el id lo crea Atlas*********/
+/********se crea 4 end pouints*******/
 router.get("/", async (req, res) => {
 
     try {
@@ -15,6 +16,7 @@ router.get("/", async (req, res) => {
         res.status(500).json({ errror: error })
     }
 })
+
 router.post("/", async (req, res) => {
     let{  description, quantity, total } = req.body
     if ( !description  || !quantity || !total ) {
@@ -31,6 +33,7 @@ router.post("/", async (req, res) => {
             payload: result
         })
 })
+
 router.put("/:cid", async (req, res) => {
     let { pid } = req.params
     let cartsToReplace = req.body

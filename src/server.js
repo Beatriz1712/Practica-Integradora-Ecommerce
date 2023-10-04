@@ -6,39 +6,48 @@ import { router} from "./routes/productsRouter.js";
 import { router as viewsRouter } from "./routes/views.router.js";
 import mongoose from "mongoose";
 import cartsRouter from "./routes/cartsRouter.js";
-import messagessRouter from "./routes/cartsRouter.js";
-import productsRouter from "./routes/cartsRouter.js";
-import uploadRouter from "./routes/cartsRouter.js";
-//config inicial
+import messagesRouter from "./routes/messagesRouter.js";
+import productsRouter from "./routes/productsRouter.js";
+import uploadRouter from "./routes/uploaadRouter.js";
+/*********config inicial**********/
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use('/products', router);
 app.use('/', viewsRouter);
-//handlebars
+/********handlebars***************************/
 app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
-
+//css static
+app.use('/', express.static(__dirname +"/public"))
 const PORT = 8080;
-
+/********Conexion mostrando el puerto********/
 const httpServer = app.listen(PORT, () => {
     console.log("Escuchando en puerto " + PORT);
 });
-//config mongoose
-mongoose.connect( "mongodb+srv://beatriz1712sc:soyfulldev1211@cluster0.2gm0bzy.mongodb.net/?retryWrites=true&w=majority")
+/*********handelbars view chat********/
+app.get('/chat',async (req,res) => {
+    res.render("chat", {
+        title:"chat con mongoose"
+    })     
+ })
+
+
+/********Config mongoose**********************/
+mongoose.connect( "mongodb+srv://beatriz1712sc:soynuevabasededatos@cluster0.2gm0bzy.mongodb.net/?retryWrites=true&w=majority")
 .then(()=>{
     console.log("Conectada a la base de datos");
 })
 .catch(error => 
     console.error("Error al conectar a la base de datos"))
 
- //rutas del CRUD de carts ,messages y products
- app.use('/products', productsRouter);
- app.use('/carts', cartsRouter);
- app.use('/messages', messagessRouter);  
- //multer
+ /**********rutas del CRUD de carts ,messages y products***************/
+ app.use('/api/products', productsRouter);
+ app.use('/api/carts', cartsRouter);
+ app.use('/api/messages', messagesRouter); 
+ /*********multer*********** */ 
  app.use("api/upload",uploadRouter)
 
 
