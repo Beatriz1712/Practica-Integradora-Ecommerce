@@ -22,6 +22,7 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 //css static
 app.use('/', express.static(__dirname +"/public"))
+
 const PORT = 8080;
 /********Conexion mostrando el puerto********/
 const httpServer = app.listen(PORT, () => {
@@ -36,7 +37,8 @@ app.get('/chat',async (req,res) => {
 
 
 /********Config mongoose**********************/
-mongoose.connect( "mongodb+srv://beatriz1712sc:soynuevabasededatos@cluster0.2gm0bzy.mongodb.net/?retryWrites=true&w=majority")
+
+mongoose.connect( "mongodb+srv://beatriz1712sc:soynuevabasededatos@cluster0.2gm0bzy.mongodb.net/test")
 .then(()=>{
     console.log("Conectada a la base de datos");
 })
@@ -47,6 +49,7 @@ mongoose.connect( "mongodb+srv://beatriz1712sc:soynuevabasededatos@cluster0.2gm0
  app.use('/api/products', productsRouter);
  app.use('/api/carts', cartsRouter);
  app.use('/api/messages', messagesRouter); 
+ 
  /*********multer*********** */ 
  app.use("api/upload",uploadRouter)
 

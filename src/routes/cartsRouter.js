@@ -35,13 +35,13 @@ router.post("/", async (req, res) => {
 })
 
 router.put("/:cid", async (req, res) => {
-    let { pid } = req.params
+    let { cid } = req.params
     let cartsToReplace = req.body
     if(!cartsToReplace.description || !cartsToReplace.quantity ||
       !cartsToReplace.total ){
             res.send({
                 result: 'error',
-                error: 'Debe enviar un id de producto  y datos a modificar'
+                error: 'Debe enviar un id de producto y datos a modificar'
             })  
     }
     let result = await cartsModel.updateOne({
@@ -51,10 +51,10 @@ router.put("/:cid", async (req, res) => {
         payload: result
     })
 })
-router.delete("/:pid", async (req, res) => {
-    let { pid } = req.params
+router.delete("/:cid", async (req, res) => {
+    let { cid } = req.params
     let result = await cartsModel.deleteOne({
-        _id:cid })
+        _id: cid })
         res.send({
             result: 'success',
             payload: result  

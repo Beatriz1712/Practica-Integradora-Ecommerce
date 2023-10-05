@@ -1,0 +1,15 @@
+###
+GET http://localhost:8080/api/carts 
+###
+GET http://localhost:8080/api/carts/651e238e82ccbd860ca11f0f
+
+###
+POST http://localhost:8080/api/carts
+Content-Type: application/json
+
+{
+  "description": "cart 4",
+  "quantity": 60,
+  "total": 1000
+}
+
