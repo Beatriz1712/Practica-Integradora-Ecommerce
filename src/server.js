@@ -8,7 +8,8 @@ import mongoose from "mongoose";
 import cartsRouter from "./routes/cartsRouter.js";
 import messagesRouter from "./routes/messagesRouter.js";
 import productsRouter from "./routes/productsRouter.js";
-import uploadRouter from "./routes/uploaadRouter.js";
+import uploadRouter from "./routes/uploadRouter.js";
+
 /*********config inicial**********/
 const app = express();
 app.use(express.json());
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use('/products', router);
 app.use('/', viewsRouter);
+
 /********handlebars***************************/
 app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");
@@ -37,7 +39,6 @@ app.get('/chat', async (req,res) => {
     })     
  })
 
-
 /********Config mongoose**********************/
 
 mongoose.connect( "mongodb+srv://beatriz1712sc:soynuevabasededatos@cluster0.2gm0bzy.mongodb.net/test")
@@ -56,9 +57,6 @@ mongoose.connect( "mongodb+srv://beatriz1712sc:soynuevabasededatos@cluster0.2gm0
  app.use("api/upload",uploadRouter)
 
 
-
-
-/*
 //config socket
 const socketServer = new Server(httpServer);
 let p = 0;
@@ -99,4 +97,3 @@ socketServer.on('connection', async (socket) => {
         console.log(mssg);
     });
 });
-*/

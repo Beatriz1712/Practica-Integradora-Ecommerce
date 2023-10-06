@@ -6,15 +6,15 @@ export const router = Router();
 router.get("/", async (req, res) => {
 
     try {
-        let carts = await messagesModel.find()
-        res.send({
-            result:'success',
-            payload: carts
-        })
+        let messages = await messagesModel.find()
+        return  res.render(
+            'chat',{messages}
+        )   
     } catch (error) {
         res.status(500).json({ errror: error })
     }
 })
+
 router.post("/", async (req, res) => {
     let{  user, message } = req.body
     if ( !user  || !message ) {
@@ -31,6 +31,7 @@ router.post("/", async (req, res) => {
             payload: result
         })
 })
+
 router.put("/:mid", async (req, res) => {
     let { mid } = req.params
     let messagesToReplace = req.body
