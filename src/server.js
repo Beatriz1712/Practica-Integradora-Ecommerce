@@ -24,12 +24,14 @@ app.set("view engine", "handlebars");
 app.use('/', express.static(__dirname +"/public"))
 
 const PORT = 8080;
+
 /********Conexion mostrando el puerto********/
 const httpServer = app.listen(PORT, () => {
     console.log("Escuchando en puerto " + PORT);
 });
+
 /*********handelbars view chat********/
-app.get('/chat',async (req,res) => {
+app.get('/chat', async (req,res) => {
     res.render("chat", {
         title:"chat con mongoose"
     })     

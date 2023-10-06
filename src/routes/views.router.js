@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
         if (limit) arrProduct = arrProduct.slice(0, limit)
         res.render("index",{productos})
     } catch (error) {
-        res.send(500).json({ error:error })
+        res.sendStatus(500).json({ error:error })
     }
 })
 

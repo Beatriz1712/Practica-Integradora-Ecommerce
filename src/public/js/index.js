@@ -21,7 +21,7 @@ const resetForm = () => {
 socketClient.on('productList', products => {
     console.log(products)
     const productList = products.map(product => {
-       
+
         return `
         <img>
     
@@ -33,8 +33,7 @@ socketClient.on('productList', products => {
             <p>Stock: ${product.stock}</p>
             
             <button class="btn btn-danger" data-id="${product.id}">Eliminar</button><hr>
-        </div>
-    </div>
+        
         `
     }).join(' ')
     divProducts.innerHTML = productList
@@ -48,7 +47,7 @@ socketClient.on('productList', products => {
         })
     })
 })
-
+    
 
 form.onsubmit = (e) => {
     e.preventDefault()

@@ -1,3 +1,4 @@
+//***********INTEGRACION WS MONGOOSE*****************
 //****************CARTS******************************
 ###
 GET http://localhost:8080/api/carts 
@@ -39,11 +40,11 @@ Content-Type: application/json
 
 {
        
-    "title":"producto 3",
-    "description":"descripcion 3",
-    "price":380,
-    "code":"063",
-    "stock" :200
+    "title":"producto 5",
+    "description":"descripcion 5",
+    "price":500,
+    "code":"088",
+    "stock" :800
     
 }
 
@@ -109,7 +110,8 @@ PUT http://localhost:8080/api/messages/651ebabbf26fb8d083357f58
 
 //****************UPLOAD*****************
 ###
-GET http://localhost:8080/api/upload
+GET http://localhost:8080/upload
 
 ####
-POST http://localhost:8080/api/upload
+POST http://localhost:8080/upload
+Content-Content-Type: 

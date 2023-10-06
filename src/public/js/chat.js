@@ -7,7 +7,7 @@ const user = userInputElement.value;
 const message = messageInputElement.value;
 
 try {
-const response = await fetch('api/msg',{
+const response = await fetch('api/message',{
     method: "POST",
     headers:{
         'Content-Type' : 'application/json',
@@ -17,6 +17,18 @@ const response = await fetch('api/msg',{
 if(response.ok){
     const responseData = await response.json();
     const successMessage = responseData.message;
+    Swal.fire({
+        icon:'success',
+        title: successMessage,
+        text: 'Mensaje enviado',
+        confirButtomText:'Aceptar',
+    }).then((result)=> {
+        if (result.isConfirmed){
+            location.reload();
+        }
+    })
+    userInputElement.value = '';
+    messageInputElement.value = '';
 } else {
     console.error('error al enviar el mensaje');
 }
