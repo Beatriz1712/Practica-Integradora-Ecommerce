@@ -113,5 +113,5 @@ PUT http://localhost:8080/api/messages/651ebabbf26fb8d083357f58
 GET http://localhost:8080/upload
 
 ####
-POST http://localhost:8080/upload
+POST http://localhost:8080/api/upload/upload
 Content-Content-Type: 

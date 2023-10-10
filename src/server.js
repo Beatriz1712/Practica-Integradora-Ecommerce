@@ -54,7 +54,7 @@ mongoose.connect( "mongodb+srv://beatriz1712sc:soynuevabasededatos@cluster0.2gm0
  app.use('/api/messages', messagesRouter); 
  
  /*********multer*********** */ 
- app.use("api/upload",uploadRouter)
+ app.use("/api/upload",uploadRouter)
 
 
 //config socket
