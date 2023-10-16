@@ -3,6 +3,8 @@ import { uploader} from '../controllers/multer.js'
  //import { dbInstance } from './api/productsRouter.js';
 // Importar todos los routers;
 export const router = Router();
+//array vacio, para subir Archivo
+let products = [];
 
 router.get("/", async (req, res) => {
 
@@ -24,6 +26,7 @@ router.get("/realtimeproducts", async (req, res) => {
         res.send(500).json({ error:error })
     }
 })
+
 //**********Subir Archivo******************/
 router.get("/subirArchivo", async (req, res) => {
    res.render('subirArchivo')
@@ -36,15 +39,23 @@ router.get("/subirArchivo", async (req, res) => {
     }
     */
 router.post('/subirArchivo', uploader.single('file'), (req, res)=>{
-    if(!req.file) return res.status(400).send({
-        status: 'error',
-        error: 'No se guardo'
-    })
-    res.send({
+    try{
+        console.log(req.file);
+        if(!req.file) return res.status(400).send({
+            status: 'error',
+            error: 'No se guardo'
+        })
+        let prod = req.file;
+        products.push(prod)
+        res.send({
         status:'success',
         payload:'Archivo guardado con exito'
     })
-})
+    }catch(error){
+        res.status(500).json({error:error})
+
+    }
+    })
 
 
 
